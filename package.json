@@ -1,0 +1,24 @@
+{
+  "name": "lease-calculator",
+  "version": "0.1.0",
+  "description": "A simple car lease calculator library",
+  "main": "LeaseCalculator.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "-"
+  },
+  "keywords": [
+    "car lease",
+    "calculator",
+    "car lease calculator",
+    "lease calculator"
+  ],
+  "author": "Erez Nagar",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.3.0"
+  }
+}

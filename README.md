@@ -48,4 +48,4 @@ const monthlyPayment = leaseCalculator.getMonthlyPayment();
 | `getTotalLeaseCost()`                 | Gets the total cost of the lease. This includes all monthly payments, down paymenaand dealer fees. Does not include disposition fee, vehicle maintenance cost or other cost of use | Number |
 | `getAPR()`                            | Gets the APR value of the lease                                                                                                                                                    | Number |
 
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)

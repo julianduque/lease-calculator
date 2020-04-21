@@ -1,5 +1,8 @@
 # Car Lease Calculator :red_car:
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[!(https://img.shields.io/npm/v/lease-calculator?color=blue&logo=npm-version)](https://www.npmjs.com/package/lease-calculator)
+
 A simple auto lease calculator for calculating your monthly lease payment, APR, total lease cost and MSRP percentage.
 
 ## How To Use
@@ -47,5 +50,3 @@ const monthlyPayment = leaseCalculator.getMonthlyPayment();
 | `getMonthlyPaymentToMsrpPercentage()` | Gets the percentage of the monthly payment out of the MSRP                                                                                                                         | Number |
 | `getTotalLeaseCost()`                 | Gets the total cost of the lease. This includes all monthly payments, down paymenaand dealer fees. Does not include disposition fee, vehicle maintenance cost or other cost of use | Number |
 | `getAPR()`                            | Gets the APR value of the lease                                                                                                                                                    | Number |
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)

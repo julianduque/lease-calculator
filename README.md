@@ -1,7 +1,7 @@
 # Car Lease Calculator :red_car:
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[(https://img.shields.io/npm/v/lease-calculator?color=blue&logo=npm-version)](https://www.npmjs.com/package/lease-calculator)
+[![Npm Version](https://img.shields.io/npm/v/lease-calculator?color=blue&logo=npm-version)](https://www.npmjs.com/package/lease-calculator)
 
 A simple auto lease calculator for calculating your monthly lease payment, APR, total lease cost and MSRP percentage.
 

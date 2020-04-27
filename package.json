@@ -1,6 +1,6 @@
 {
   "name": "lease-calculator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A simple car lease calculator library",
   "main": "LeaseCalculator.js",
   "scripts": {
@@ -19,6 +19,9 @@
   "author": "Erez Nagar",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-jest": "^25.4.0",
     "jest": "^25.3.0"
   }
 }

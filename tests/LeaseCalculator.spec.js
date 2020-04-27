@@ -1,5 +1,5 @@
-const LeaseCalculator = require("../src/LeaseCalculator");
-const {
+import LeaseCalculator from "../src/LeaseCalculator";
+import {
   DUMMY_LEASE_ZERO_DOWN_DATA,
   DUMMY_LEASE_WITH_DOWN_DATA,
   DUMMY_LEASE_PERCENT_RV_DATA,
@@ -12,7 +12,7 @@ const {
   OFF_MSRP,
   // Monthly payment as a percentage of the MSRP
   MSRP_PERCENTAGE,
-} = require("./constants");
+} from "./constants";
 
 describe("LeaseCalculator", () => {
   let leaseCalculator;

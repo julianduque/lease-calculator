@@ -155,4 +155,4 @@ class LeaseCalculator {
   }
 }
 
-module.exports = LeaseCalculator;
+export default LeaseCalculator;

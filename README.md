@@ -7,6 +7,10 @@ A simple auto lease calculator for calculating your monthly lease payment, APR, 
 
 ## How To Use
 
+```bash
+npm install lease-calculator --save
+```
+
 ```javascript
 const leaseCalculator = new LeaseCalculator();
 leaseCalculator.calculate({

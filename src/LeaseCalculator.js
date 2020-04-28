@@ -36,7 +36,9 @@ class LeaseCalculator {
     Note: To keep calculation accruate, we might need to truncate this value only on consumer read
     Returns: Number
   */
-  _MFToAPR = () => this.mf * 2400;
+  _MFToAPR() {
+    return this.mf * 2400;
+  }
 
   /*
     Calculates the lease' monthly payment, APR, total cost and thresholds
@@ -95,13 +97,17 @@ class LeaseCalculator {
     Gets the residual value of the lease in percentage 
     Returns: Number
   */
-  getRVPercentage = () => Math.round(this.RVPercent);
+  getRVPercentage() {
+    return Math.round(this.RVPercent);
+  }
 
   /*
     Gets the residual value of the lease
     Returns: Number
   */
-  getRVValue = () => Number.parseFloat(this.RVValue.toFixed(2));
+  getRVValue() {
+    return Number.parseFloat(this.RVValue.toFixed(2));
+  }
 
   /*
     Gets the monthly payment of the lease, not including taxes

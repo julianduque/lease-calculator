@@ -1,8 +1,8 @@
 {
   "name": "lease-calculator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple car lease calculator library",
-  "main": "LeaseCalculator.js",
+  "main": "src/LeaseCalculator.js",
   "scripts": {
     "test": "jest"
   },

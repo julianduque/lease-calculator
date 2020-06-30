@@ -65,38 +65,5 @@ const monthlyPayment = leaseCalculator.getMonthlyPayment();
 ## Supported manufacturers
 
 Lease Calculator supports acquisition and disposition fee calculation for the following brands:
-Acura
-Alfa Romeo
-Audi
-Bmw
-Buick
-Cadillac
-Chevrolet
-Chrysler
-Dodge
-Fiat
-Ford
-Genesis
-GMC
-Honda
-Hyundai
-Infiniti
-Jaguar
-Jeep
-Kia
-land rover
-Lexus
-Lincoln
-Mini
-Mazda
-Mercedes benz
-Mitsubishi
-Nissan
-Ram
-Scion
-Smart
-Subaru
-Tesla
-Toyota
-Volkswagen
-Volvo
+
+Acura, Alfa Romeo, Audi, Bmw, Buick, Cadillac, Chevrolet, Chrysler, Dodge, Fiat, Ford, Genesis, GMC, Honda, Hyundai, Infiniti, Jaguar, Jeep, Kia, land rover, Lexus, Lincoln, Mini, Mazda, Mercedes benz, Mitsubishi, Nissan, Ram, Scion, Smart, Subaru, Tesla, Toyota, Volkswagen, Volvo

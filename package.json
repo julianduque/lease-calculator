@@ -17,7 +17,7 @@
     "lease calculator"
   ],
   "author": "Erez Nagar",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",

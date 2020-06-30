@@ -1,3 +1,4 @@
+import { MAKES, MANUFACTURER_FEES } from "./constants";
 class LeaseCalculator {
   /*
     Validates required fields.
@@ -43,19 +44,21 @@ class LeaseCalculator {
   /*
     Calculates the lease' monthly payment, APR, total cost and thresholds
 
+    make          Make of the vehicle, for calculating fees
     msrp          Required, MSRP of the vehicle
     sellingPrice  Required, negotiated price of the vehicle
     rv            Required, Residual value of the vehicle
     isRVPercent   Whether the rv is absolute value of a percentage of MSRP
     mf            Required, The money factor of the lease
-    leaseTerm     The length of the lease in months
-    salesTax      The state's sales tax in percentage
+    leaseTerm     The length of the lease in months.
+    salesTax      The state's sales tax in percentage.
     totalFees     Total fees of the lease
     rebates       Total discount from dealer and manufacturer
     tradeIn       Total trade-in value
     downPayment   Down payment, if applicable
   */
   calculate({
+    make,
     msrp,
     sellingPrice,
     rv,
@@ -68,6 +71,7 @@ class LeaseCalculator {
     tradeIn = 0,
     downPayment = 0,
   }) {
+    this.make = make;
     this.msrp = msrp;
     this.sellingPrice = sellingPrice;
     this.rv = rv;
@@ -84,7 +88,9 @@ class LeaseCalculator {
     this._calculateRV();
     const grossCapCost = this.sellingPrice + this.totalFees;
     const capCostReduction = this.downPayment + this.rebates + this.tradeIn;
-    const adjustedCapCost = grossCapCost - capCostReduction;
+    // By default, acquisition fee is capitalized
+    const adjustedCapCost =
+      grossCapCost - capCostReduction + this.getAcquisitionFee();
     const depreciation = adjustedCapCost - this.RVValue;
     const basePayment = depreciation / this.leaseTerm;
     const rentCharge = (adjustedCapCost + this.RVValue) * this.mf;
@@ -149,7 +155,11 @@ class LeaseCalculator {
     Returns: Number
   */
   getTotalLeaseCost() {
-    return this.monthlyPayment * this.leaseTerm + this.totalFees;
+    const totalCost =
+      this.monthlyPayment * this.leaseTerm +
+      this.totalFees +
+      this.getDispositionFee();
+    return Math.round(totalCost * 100) / 100;
   }
 
   /*
@@ -158,6 +168,36 @@ class LeaseCalculator {
   */
   getAPR() {
     return Math.round(this.apr * 100) / 100;
+  }
+
+  /*
+    Gets the acquisition fee value by brand. If no brand sepcified, returns 0;
+    Returns: Number
+  */
+  getAcquisitionFee() {
+    const make = MAKES.filter((make) => make.displayName === this.make);
+    if (make.length === 0) {
+      return 0;
+    }
+
+    return MANUFACTURER_FEES.filter(
+      (manufacturer) => manufacturer.makeId === make[0].id
+    )[0].acquisitionFee;
+  }
+
+  /*
+    Gets the disposition fee value by brand. If no brand sepcified, returns 0;
+    Returns: Number
+  */
+  getDispositionFee() {
+    const make = MAKES.filter((make) => make.displayName === this.make);
+    if (make.length === 0) {
+      return 0;
+    }
+
+    return MANUFACTURER_FEES.filter(
+      (manufacturer) => manufacturer.makeId === make[0].id
+    )[0].dispositionFee;
   }
 }
 

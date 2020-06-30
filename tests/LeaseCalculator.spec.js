@@ -12,6 +12,10 @@ import {
   OFF_MSRP,
   // Monthly payment as a percentage of the MSRP
   MSRP_PERCENTAGE,
+  ACQUISITION_FEE_TOYOTA,
+  DISPOSITION_FEE_TOYOTA,
+  TOTAL_LEASE_COST_ZERO_DOWN,
+  TOTAL_LEASE_COST_WITH_DOWN,
 } from "./constants";
 
 describe("LeaseCalculator", () => {
@@ -29,7 +33,6 @@ describe("LeaseCalculator", () => {
         });
       }).toThrow(Error);
     });
-
     it("should throw an error when MSRP field is missing", () => {
       expect(() => {
         leaseCalculator.calculate({
@@ -38,7 +41,6 @@ describe("LeaseCalculator", () => {
         });
       }).toThrowError(`Invalid Input: MSRP`);
     });
-
     it("should throw an error when Selling Price field is missing", () => {
       expect(() => {
         leaseCalculator.calculate({
@@ -47,7 +49,6 @@ describe("LeaseCalculator", () => {
         });
       }).toThrowError(`Invalid Input: Selling Price`);
     });
-
     it("should throw an error when RV field is missing", () => {
       expect(() => {
         leaseCalculator.calculate({
@@ -56,7 +57,6 @@ describe("LeaseCalculator", () => {
         });
       }).toThrowError(`Invalid Input: Residual Value`);
     });
-
     it("should throw an error when MF field is missing", () => {
       expect(() => {
         leaseCalculator.calculate({
@@ -64,6 +64,32 @@ describe("LeaseCalculator", () => {
           mf: null,
         });
       }).toThrowError(`Invalid Input: Money Factor`);
+    });
+  });
+
+  describe("Acquisition fee", () => {
+    it("Is 0 when Make is not specified", () => {
+      leaseCalculator.calculate({ ...DUMMY_LEASE_ZERO_DOWN_DATA, make: "" });
+      const acquisitionFee = leaseCalculator.getAcquisitionFee();
+      expect(acquisitionFee).toEqual(0);
+    });
+    it("is based on Make, when specified", () => {
+      leaseCalculator.calculate(DUMMY_LEASE_ZERO_DOWN_DATA);
+      const acquisitionFee = leaseCalculator.getAcquisitionFee();
+      expect(acquisitionFee).toEqual(ACQUISITION_FEE_TOYOTA);
+    });
+  });
+
+  describe("Disposition fee", () => {
+    it("Is 0 when Make is not specified", () => {
+      leaseCalculator.calculate({ ...DUMMY_LEASE_ZERO_DOWN_DATA, make: "" });
+      const acquisitionFee = leaseCalculator.getDispositionFee();
+      expect(acquisitionFee).toEqual(0);
+    });
+    it("is based on Make, when specified", () => {
+      leaseCalculator.calculate(DUMMY_LEASE_ZERO_DOWN_DATA);
+      const acquisitionFee = leaseCalculator.getDispositionFee();
+      expect(acquisitionFee).toEqual(DISPOSITION_FEE_TOYOTA);
     });
   });
 
@@ -117,6 +143,18 @@ describe("LeaseCalculator", () => {
       leaseCalculator.calculate(DUMMY_LEASE_PERCENT_RV_DATA);
       const apr = leaseCalculator.getAPR();
       expect(apr).toEqual(APR);
+    });
+
+    it("the correct total lease cost w/ zero down", () => {
+      leaseCalculator.calculate(DUMMY_LEASE_ZERO_DOWN_DATA);
+      const totalCost = leaseCalculator.getTotalLeaseCost();
+      expect(totalCost).toEqual(TOTAL_LEASE_COST_ZERO_DOWN);
+    });
+
+    it("the correct total lease cost w/ a down payment", () => {
+      leaseCalculator.calculate(DUMMY_LEASE_WITH_DOWN_DATA);
+      const totalCost = leaseCalculator.getTotalLeaseCost();
+      expect(totalCost).toEqual(TOTAL_LEASE_COST_WITH_DOWN);
     });
   });
 });

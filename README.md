@@ -17,27 +17,29 @@ npm install lease-calculator --save
 ```javascript
 const leaseCalculator = new LeaseCalculator();
 leaseCalculator.calculate({
+  // Make of the vehicle, for calculating manufacturer-based fees
+  make: "Toyota",
   // Required, MSRP of the vehicle
   msrp: 23000,
   // Required, negotiated price of the vehicle
   sellingPrice: 21000,
   // Required, Residual value of the vehicle
   rv: 13110,
-  // Whether the rv is absolute value of a percentage of MSRP
+  // Whether the RV is an absolute value or a percentage of MSRP. Default: true
   isRVPercent: false,
   // Required, The money factor of the lease
   mf: 0.00125,
-  // The length of the lease in months
+  // The length of the lease in months. Default: 36.
   leaseTerm: 36,
-  // The state's sales tax in percentage
+  // The state's sales tax in percentage. Default: 0%.
   salesTax: 6.25,
-  // Total fees of the lease
+  // Total fees of the lease. Default: 0.
   totalFees: 1200,
-  // Total discount from dealer and manufacturer
+  // Total discount from dealer and manufacturer. Default: 0.
   rebates: 500,
-  // Total trade-in value
+  // Total trade-in value. Default: 0.
   tradeIn: 0,
-  // Down payment, if applicable
+  // Down payment, if applicable. Default: 0.
   downPayment: 0,
 });
 
@@ -57,3 +59,44 @@ const monthlyPayment = leaseCalculator.getMonthlyPayment();
 | `getMonthlyPaymentToMsrpPercentage()` | Gets the percentage of the monthly payment out of the MSRP                                                                                                                         | Number |
 | `getTotalLeaseCost()`                 | Gets the total cost of the lease. This includes all monthly payments, down paymenaand dealer fees. Does not include disposition fee, vehicle maintenance cost or other cost of use | Number |
 | `getAPR()`                            | Gets the APR value of the lease                                                                                                                                                    | Number |
+| `getAcquisitionFeeValue`              | Gets the acquisition fee value by brand. If no brand sepcified, returns 0                                                                                                          | Number |
+| `getDispositionFeeValue`              | Gets the disposition fee value by brand. If no brand sepcified, returns 0                                                                                                          | Number |
+
+## Supported manufacturers
+
+Lease Calculator supports acquisition and disposition fee calculation for the following brands:
+Acura
+Alfa Romeo
+Audi
+Bmw
+Buick
+Cadillac
+Chevrolet
+Chrysler
+Dodge
+Fiat
+Ford
+Genesis
+GMC
+Honda
+Hyundai
+Infiniti
+Jaguar
+Jeep
+Kia
+land rover
+Lexus
+Lincoln
+Mini
+Mazda
+Mercedes benz
+Mitsubishi
+Nissan
+Ram
+Scion
+Smart
+Subaru
+Tesla
+Toyota
+Volkswagen
+Volvo

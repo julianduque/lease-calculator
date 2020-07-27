@@ -4,7 +4,7 @@
 [![Npm Version](https://img.shields.io/npm/v/lease-calculator?color=blue&logo=npm-version)](https://www.npmjs.com/package/lease-calculator)
 ![](https://github.com/ErezNagar/lease-calculator/workflows/Tests/badge.svg)
 
-A simple auto lease calculator for calculating your monthly lease payment, APR, total lease cost and MSRP percentage.
+A simple auto lease calculator for calculating your monthly lease payment, APR, total lease cost, percentage off MSRP, etc.
 
 See it used in the Auto Lease app: https://github.com/ErezNagar/lease-calculator-app
 
@@ -41,6 +41,8 @@ leaseCalculator.calculate({
   tradeIn: 0,
   // Down payment, if applicable. Default: 0.
   downPayment: 0,
+  // Method of taxation to apply, based on state. Default: TAX_ON_MONTHLY_PAYMENT
+  taxMethod,
 });
 
 // Get the lease monthly payment
@@ -61,6 +63,7 @@ const monthlyPayment = leaseCalculator.getMonthlyPayment();
 | `getAPR()`                            | Gets the APR value of the lease                                                                                                                                                    | Number |
 | `getAcquisitionFeeValue`              | Gets the acquisition fee value by brand. If no brand sepcified, returns 0                                                                                                          | Number |
 | `getDispositionFeeValue`              | Gets the disposition fee value by brand. If no brand sepcified, returns 0                                                                                                          | Number |
+| `getDriveOffPayment`                  | Gets total drive-off payment                                                                                                                                                       | Number |
 
 ## Supported manufacturers
 

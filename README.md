@@ -81,19 +81,19 @@ calculate({
 });
 ```
 
-|
-
-| `getRVValue()` | Gets the residual value of the lease | Number |
-| `getRVPercentage()` | Gets the residual value of the lease in percentage | Number |
-| `getMonthlyPaymentPreTax()` | Gets the monthly payment of the lease, not including taxes | Number |
-| `getMonthlyPayment()` | Gets the monthly payment of the lease, including taxes | Number |
-| `getDiscountOffMsrpPercentage()` | Gets the discount off of MSRP, in percentage | Number |
-| `getMonthlyPaymentToMsrpPercentage()` | Gets the percentage of the monthly payment out of the MSRP | Number |
-| `getTotalLeaseCost()` | Gets the total cost of the lease. This includes all monthly payments, down paymenaand dealer fees. Does not include disposition fee, vehicle maintenance cost or other cost of use | Number |
-| `getAPR()` | Gets the APR value of the lease | Number |
-| `getAcquisitionFeeValue` | Gets the acquisition fee value by brand. If no brand sepcified, returns 0 | Number |
-| `getDispositionFeeValue` | Gets the disposition fee value by brand. If no brand sepcified, returns 0 | Number |
-| `getDriveOffPayment` | Gets total drive-off payment | Number |
+|                                       |                                                                                                                                                                                    |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getRVValue()`                        | Gets the residual value of the lease                                                                                                                                               | Number |
+| `getRVPercentage()`                   | Gets the residual value of the lease in percentage                                                                                                                                 | Number |
+| `getMonthlyPaymentPreTax()`           | Gets the monthly payment of the lease, not including taxes                                                                                                                         | Number |
+| `getMonthlyPayment()`                 | Gets the monthly payment of the lease, including taxes                                                                                                                             | Number |
+| `getDiscountOffMsrpPercentage()`      | Gets the discount off of MSRP, in percentage                                                                                                                                       | Number |
+| `getMonthlyPaymentToMsrpPercentage()` | Gets the percentage of the monthly payment out of the MSRP                                                                                                                         | Number |
+| `getTotalLeaseCost()`                 | Gets the total cost of the lease. This includes all monthly payments, down paymenaand dealer fees. Does not include disposition fee, vehicle maintenance cost or other cost of use | Number |
+| `getAPR()`                            | Gets the APR value of the lease                                                                                                                                                    | Number |
+| `getAcquisitionFeeValue`              | Gets the acquisition fee value by brand. If no brand sepcified, returns 0                                                                                                          | Number |
+| `getDispositionFeeValue`              | Gets the disposition fee value by brand. If no brand sepcified, returns 0                                                                                                          | Number |
+| `getDriveOffPayment`                  | Gets total drive-off payment                                                                                                                                                       | Number |
 
 ## Supported manufacturers
 

@@ -1,3 +1,7 @@
+export const TAX_ON_MONTHLY_PAYMENT = 1;
+export const TAX_ON_SALES_PRICE = 2;
+export const TAX_ON_TOTAL_LEASE_PAYMENT = 3;
+
 export const MAKES = [
   { id: 1, displayName: "Acura" },
   { id: 2, displayName: "Alfa Romeo" },

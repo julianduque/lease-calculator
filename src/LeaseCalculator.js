@@ -1,4 +1,11 @@
-import { MAKES, MANUFACTURER_FEES } from "./constants";
+import {
+  TAX_ON_MONTHLY_PAYMENT,
+  TAX_ON_SALES_PRICE,
+  TAX_ON_TOTAL_LEASE_PAYMENT,
+  MAKES,
+  MANUFACTURER_FEES,
+} from "./constants";
+
 class LeaseCalculator {
   /*
     Validates required fields.
@@ -42,7 +49,7 @@ class LeaseCalculator {
   }
 
   /*
-    Calculates the lease' monthly payment, APR, total cost and thresholds
+    Calculates the lease' monthly payment, APR, total cost, etc.
 
     make          Make of the vehicle, for calculating fees
     msrp          Required, MSRP of the vehicle
@@ -56,6 +63,7 @@ class LeaseCalculator {
     rebates       Total discount from dealer and manufacturer
     tradeIn       Total trade-in value
     downPayment   Down payment, if applicable
+    taxMethod     Method of taxation to apply, based on state
   */
   calculate({
     make,
@@ -70,6 +78,7 @@ class LeaseCalculator {
     rebates = 0,
     tradeIn = 0,
     downPayment = 0,
+    taxMethod = TAX_ON_MONTHLY_PAYMENT,
   }) {
     this.make = make;
     this.msrp = msrp;
@@ -83,12 +92,14 @@ class LeaseCalculator {
     this.rebates = rebates;
     this.tradeIn = tradeIn;
     this.downPayment = downPayment;
+    this.taxMethod = taxMethod;
+
     this._validateData();
 
     this._calculateRV();
     const grossCapCost = this.sellingPrice + this.totalFees;
     const capCostReduction = this.downPayment + this.rebates + this.tradeIn;
-    // By default, acquisition fee is capitalized
+    // Net Cap Cost. By default, acquisition fee is capitalized
     const adjustedCapCost =
       grossCapCost - capCostReduction + this.getAcquisitionFee();
     const depreciation = adjustedCapCost - this.RVValue;
@@ -96,7 +107,8 @@ class LeaseCalculator {
     const rentCharge = (adjustedCapCost + this.RVValue) * this.mf;
     this.apr = this._MFToAPR();
     this.monthlyPaymentPreTax = basePayment + rentCharge;
-    this.monthlyPayment = this.monthlyPaymentPreTax * (1 + this.salesTax / 100);
+    this.monthlyPayment = this.calculateMonthlyPaymentWithTax();
+    this.driveOffPayment = this.getDriveOffPayment();
   }
 
   /*
@@ -156,8 +168,9 @@ class LeaseCalculator {
   */
   getTotalLeaseCost() {
     const totalCost =
-      this.monthlyPayment * this.leaseTerm +
-      this.totalFees +
+      // First monthly payment is included in drive-off
+      this.monthlyPayment * (this.leaseTerm - 1) +
+      this.getDriveOffPayment() +
       this.getDispositionFee();
     return Math.round(totalCost * 100) / 100;
   }
@@ -198,6 +211,53 @@ class LeaseCalculator {
     return MANUFACTURER_FEES.filter(
       (manufacturer) => manufacturer.makeId === make[0].id
     )[0].dispositionFee;
+  }
+
+  /*
+    Calculates monthly payment based on method of taxation
+    Returns: Number
+  */
+  calculateMonthlyPaymentWithTax() {
+    if (this.taxMethod === TAX_ON_MONTHLY_PAYMENT)
+      return this.monthlyPaymentPreTax * (1 + this.salesTax / 100);
+    return this.monthlyPaymentPreTax;
+  }
+
+  /*
+    Calculates the drive-off tax based on method of taxation
+    Returns: Number
+  */
+  calculateDriveOffTaxes() {
+    let taxableAmount;
+    if (this.taxMethod === TAX_ON_MONTHLY_PAYMENT) {
+      taxableAmount = this.downPayment + this.totalFees;
+    } else if (this.taxMethod === TAX_ON_SALES_PRICE) {
+      taxableAmount = this.sellingPrice;
+    } else if (this.taxMethod === TAX_ON_TOTAL_LEASE_PAYMENT) {
+      taxableAmount =
+        this.monthlyPaymentPreTax +
+        this.downPayment +
+        this.totalFees +
+        this.getAcquisitionFee();
+    }
+
+    // return taxableAmount * (1 + this.salesTax / 100);
+    return taxableAmount * (this.salesTax / 100);
+  }
+
+  /*
+    Calculates total drive-off payment
+    Returns: Number
+  */
+  getDriveOffPayment() {
+    const driveOffTaxes = this.calculateDriveOffTaxes();
+    return (
+      driveOffTaxes +
+      this.downPayment +
+      this.totalFees +
+      // First month payment
+      this.monthlyPayment
+    );
   }
 }
 

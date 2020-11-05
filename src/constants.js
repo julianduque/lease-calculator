@@ -1,8 +1,8 @@
-export const TAX_ON_MONTHLY_PAYMENT = 1;
-export const TAX_ON_SALES_PRICE = 2;
-export const TAX_ON_TOTAL_LEASE_PAYMENT = 3;
+exports.TAX_ON_MONTHLY_PAYMENT = 1;
+exports.TAX_ON_SALES_PRICE = 2;
+exports.TAX_ON_TOTAL_LEASE_PAYMENT = 3;
 
-export const MAKES = [
+exports.MAKES = [
   { id: 1, displayName: "Acura" },
   { id: 2, displayName: "Alfa Romeo" },
   { id: 3, displayName: "Audi" },
@@ -39,7 +39,7 @@ export const MAKES = [
   { id: 34, displayName: "Volkswagen" },
   { id: 35, displayName: "Volvo" },
 ];
-export const MANUFACTURER_FEES = [
+exports.MANUFACTURER_FEES = [
   { makeId: 1, acquisitionFee: 595 },
   { makeId: 2, acquisitionFee: 595, dispositionFee: 395 },
   { makeId: 3, acquisitionFee: 895, dispositionFee: 495 },

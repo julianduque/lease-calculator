@@ -1,5 +1,5 @@
-import LeaseCalculator from "../src/LeaseCalculator";
-import {
+const { LeaseCalculator } = require("../src/LeaseCalculator");
+const {
   // Tax applied on monthly payment
   DUMMY_LEASE_ZERO_DOWN_WITH_TAX_ON_MONTHLY_PAYMENT,
   DUMMY_LEASE_WITH_DOWN_WITH_TAX_ON_MONTHLY_PAYMENT,
@@ -18,7 +18,7 @@ import {
   RV_PERCENTAGE,
   ACQUISITION_FEE_TOYOTA,
   DISPOSITION_FEE_TOYOTA,
-} from "./constants";
+} = require("./constants");
 
 describe("LeaseCalculator", () => {
   let leaseCalculator;

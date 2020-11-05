@@ -2,8 +2,7 @@
   "name": "lease-calculator",
   "version": "1.2.0",
   "description": "A simple car lease calculator library",
-  "main": "src/LeaseCalculator.mjs",
-  "type": "module",
+  "main": "src/LeaseCalculator.js",
   "scripts": {
     "test": "jest"
   },

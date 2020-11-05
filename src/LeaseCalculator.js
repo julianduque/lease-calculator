@@ -1,10 +1,10 @@
-import {
+const {
   TAX_ON_MONTHLY_PAYMENT,
   TAX_ON_SALES_PRICE,
   TAX_ON_TOTAL_LEASE_PAYMENT,
   MAKES,
   MANUFACTURER_FEES,
-} from "./constants";
+} = require("./constants");
 
 class LeaseCalculator {
   /*
@@ -112,7 +112,7 @@ class LeaseCalculator {
   }
 
   /*
-    Gets the residual value of the lease in percentage 
+    Gets the residual value of the lease in percentage
     Returns: Number
   */
   getRVPercentage() {
@@ -261,4 +261,4 @@ class LeaseCalculator {
   }
 }
 
-export default LeaseCalculator;
+module.exports = { LeaseCalculator };
